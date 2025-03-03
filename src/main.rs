@@ -1,4 +1,4 @@
-use rosalind_rust::problems::{dna, rna, revc, fib, gc, hamm, iprb, prot};
+use rosalind_rust::problems::{dna, rna, revc, fib, gc, hamm, iprb, prot, subs};
 use rosalind_rust::utils::solve;
 use std::env;
 
@@ -20,6 +20,7 @@ fn main() {
         "hamm" => solve(hamm::hamm, "hamm"),
         "iprb" => solve(iprb::iprb, "iprb"),
         "prot" => solve(prot::prot, "prot"),
+        "subs" => solve(subs::subs, "subs"),
         _ => {
             eprintln!("Unknown problem: {}", problem);
             std::process::exit(1);
