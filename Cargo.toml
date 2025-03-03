@@ -1,0 +1,20 @@
+[package]
+edition = "2021"
+name = "rosalind-rust"
+version = "0.1.0"
+
+[dependencies]
+anyhow = "1.0"
+clap = {version = "4.4", features = ["derive"]}
+
+[lints.rust]
+missing_debug_implementations = "warn"
+trivial_casts = "warn"
+unused_lifetimes = "warn"
+unused_qualifications = "warn"
+
+[lints.clippy]
+cognitive_complexity = "warn"
+missing_const_for_fn = "warn"
+missing_errors_doc = "warn"
+semicolon_if_nothing_returned = "warn"
