@@ -63,3 +63,44 @@ pub fn solve(problem: fn(Option<String>) -> String, problem_name: &str) -> io::R
     let result = problem(input);
     Ok(result)
 }
+
+pub fn codon_table() -> HashMap<&'static str, char> {
+    let mut table = HashMap::new();
+    table.insert("UUU", 'F'); table.insert("CUU", 'L'); table.insert("AUU", 'I'); table.insert("GUU", 'V');
+    table.insert("UUC", 'F'); table.insert("CUC", 'L'); table.insert("AUC", 'I'); table.insert("GUC", 'V');
+    table.insert("UUA", 'L'); table.insert("CUA", 'L'); table.insert("AUA", 'I'); table.insert("GUA", 'V');
+    table.insert("UUG", 'L'); table.insert("CUG", 'L'); table.insert("AUG", 'M'); table.insert("GUG", 'V');
+    table.insert("UCU", 'S'); table.insert("CCU", 'P'); table.insert("ACU", 'T'); table.insert("GCU", 'A');
+    table.insert("UCC", 'S'); table.insert("CCC", 'P'); table.insert("ACC", 'T'); table.insert("GCC", 'A');
+    table.insert("UCA", 'S'); table.insert("CCA", 'P'); table.insert("ACA", 'T'); table.insert("GCA", 'A');
+    table.insert("UCG", 'S'); table.insert("CCG", 'P'); table.insert("ACG", 'T'); table.insert("GCG", 'A');
+    table.insert("UAU", 'Y'); table.insert("CAU", 'H'); table.insert("AAU", 'N'); table.insert("GAU", 'D');
+    table.insert("UAC", 'Y'); table.insert("CAC", 'H'); table.insert("AAC", 'N'); table.insert("GAC", 'D');
+    table.insert("UAA", ' '); table.insert("CAA", 'Q'); table.insert("AAA", 'K'); table.insert("GAA", 'E');
+    table.insert("UAG", ' '); table.insert("CAG", 'Q'); table.insert("AAG", 'K'); table.insert("GAG", 'E');
+    table.insert("UGU", 'C'); table.insert("CGU", 'R'); table.insert("AGU", 'S'); table.insert("GGU", 'G');
+    table.insert("UGC", 'C'); table.insert("CGC", 'R'); table.insert("AGC", 'S'); table.insert("GGC", 'G');
+    table.insert("UGA", ' '); table.insert("CGA", 'R'); table.insert("AGA", 'R'); table.insert("GGA", 'G');
+    table.insert("UGG", 'W'); table.insert("CGG", 'R'); table.insert("AGG", 'R'); table.insert("GGG", 'G');
+    table
+}
+
+pub fn translate_rna(rna: &str) -> String {
+    let codon_table = codon_table();
+    let mut protein = String::new();
+
+    for i in (0..rna.len()).step_by(3) {
+        if i + 3 > rna.len() {
+            break;
+        }
+        let codon = &rna[i..i + 3];
+        if let Some(&amino_acid) = codon_table.get(codon) {
+            if amino_acid == ' ' {
+                break;
+            }
+            protein.push(amino_acid);
+        }
+    }
+
+    protein
+}
