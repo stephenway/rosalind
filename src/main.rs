@@ -1,4 +1,4 @@
-use rosalind_rust::problems::{dna, hamm};
+use rosalind_rust::problems::{dna, rna, revc, hamm};
 use rosalind_rust::utils::solve;
 use std::env;
 
@@ -13,6 +13,8 @@ fn main() {
 
     let result = match problem.as_str() {
         "dna" => solve(dna::dna, "dna"),
+        "rna" => solve(rna::rna, "rna"),
+        "revc" => solve(revc::revc, "revc"),
         "hamm" => solve(hamm::hamm, "hamm"),
         _ => {
             eprintln!("Unknown problem: {}", problem);

@@ -2,6 +2,7 @@ use std::collections::HashMap;
 use std::fs::File;
 use std::io::{self, Read};
 use std::path::PathBuf;
+use std::env;
 
 pub fn frequencies(data: &str) -> HashMap<char, usize> {
     let mut freq = HashMap::new();
@@ -42,8 +43,8 @@ macro_rules! define_problem {
 }
 
 fn problem_data_path(problem: &str) -> PathBuf {
-    let home_dir = std::env::var("HOME").expect("Could not find home directory");
-    PathBuf::from(home_dir).join(format!("Downloads/rosalind_{}.txt", problem))
+    let repo_dir = env::current_dir().expect("Could not find current directory");
+    repo_dir.join(format!("downloads/rosalind_{}.txt", problem))
 }
 
 pub fn solve(problem: fn(Option<String>) -> String, problem_name: &str) -> io::Result<String> {
