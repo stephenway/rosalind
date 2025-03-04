@@ -23,7 +23,6 @@ fn main() {
         "revc" => solve(rosalind_rust::problems::revc::revc, "revc"),
         "fib" => solve(rosalind_rust::problems::fib::fib, "fib"),
         "gc" => solve(rosalind_rust::problems::gc::gc, "gc"),
-        "gc2" => solve(rosalind_rust::problems::gc2::gc, "gc2"),
         "hamm" => solve(rosalind_rust::problems::hamm::hamm, "hamm"),
         "iprb" => solve(rosalind_rust::problems::iprb::iprb, "iprb"),
         "prot" => solve(rosalind_rust::problems::prot::prot, "prot"),

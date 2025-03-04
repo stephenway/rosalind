@@ -24,8 +24,6 @@ TGGGAACCTGCGGGCAGTAGGTGGAAT".to_string(),
             let gc_count = sequence.chars().filter(|&c| c == 'G' || c == 'C').count();
             let gc_content = (gc_count as f64 / sequence.len() as f64) * 100.0;
 
-            println!("ID: {}, Sequence Length: {}, GC Count: {}, GC Content: {:.6}", id, sequence.len(), gc_count, gc_content); // Debug print
-
             if gc_content > max_gc_content {
                 max_gc_content = gc_content;
                 max_gc_id = id;
