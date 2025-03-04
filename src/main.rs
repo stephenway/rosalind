@@ -27,6 +27,7 @@ fn main() {
         "iprb" => solve(rosalind_rust::problems::iprb::iprb, "iprb"),
         "prot" => solve(rosalind_rust::problems::prot::prot, "prot"),
         "subs" => solve(rosalind_rust::problems::subs::subs, "subs"),
+        "iev" => solve(rosalind_rust::problems::iev::iev, "iev"),
         _ => unreachable!(),
     };
 
