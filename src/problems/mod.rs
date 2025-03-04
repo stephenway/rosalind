@@ -1,3 +1,4 @@
+pub mod cons;
 pub mod dna;
 pub mod fib;
 pub mod gc;
