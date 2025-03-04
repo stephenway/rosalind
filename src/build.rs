@@ -6,7 +6,7 @@ fn main() {
     let out_dir = env::var("OUT_DIR").unwrap();
     let dest_path = Path::new(&out_dir).join("problems_list.rs");
 
-    let mut problems = String::new();
+    let mut problems = Vec::new();
     let problems_dir = Path::new("src/problems");
 
     for entry in fs::read_dir(problems_dir).unwrap() {
@@ -16,16 +16,24 @@ fn main() {
             if let Some(stem) = path.file_stem() {
                 if let Some(stem_str) = stem.to_str() {
                     if stem_str != "mod" {
-                        problems.push_str(&format!("\"{}\",\n", stem_str));
+                        problems.push(stem_str.to_string());
                     }
                 }
             }
         }
     }
 
+    problems.sort();
+
+    let problems_str = problems
+        .iter()
+        .map(|problem| format!("\"{}\"", problem))
+        .collect::<Vec<String>>()
+        .join(",\n");
+
     fs::write(
         dest_path,
-        format!("const PROBLEMS: &[&str] = &[\n{}];", problems),
+        format!("const PROBLEMS: &[&str] = &[\n{}];", problems_str),
     )
     .unwrap();
 }
