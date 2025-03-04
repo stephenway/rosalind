@@ -15,7 +15,9 @@ fn main() {
         if path.is_file() {
             if let Some(stem) = path.file_stem() {
                 if let Some(stem_str) = stem.to_str() {
-                    problems.push_str(&format!("\"{}\",\n", stem_str));
+                    if stem_str != "mod" {
+                        problems.push_str(&format!("\"{}\",\n", stem_str));
+                    }
                 }
             }
         }

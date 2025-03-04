@@ -46,11 +46,12 @@ jobs:
 
     - name: List problems
       id: list_problems
-      run: echo "::set-output name=problems::$(cat ${{ github.workspace }}/target/debug/build/rosalind-*/out/problems_list.rs | grep -oP '(?<=\").*(?=\")' | tr '\n' ' ')"
+      run: echo "problems=$(cat ${{ github.workspace }}/target/debug/build/rosalind-*/out/problems_list.rs | grep -oP '(?<=\").*(?=\")' | tr '\n' ' ')" >> $GITHUB_ENV
+
 
     - name: Run problems
       run: |
-        problems="${{ steps.list_problems.outputs.problems }}"
+        problems="${{ env.problems }}"
         for problem in $problems; do
           echo "Running problem: $problem"
           cargo run -- $problem

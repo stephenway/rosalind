@@ -1,7 +1,5 @@
 include!(concat!(env!("OUT_DIR"), "/problems_list.rs"));
 
-// use rosalind_rust::problems::{dna, fib, gc, hamm, iprb, prot, revc, rna, subs};
-
 use rosalind_rust::utils::solve;
 use std::env;
 
@@ -20,15 +18,6 @@ fn main() {
     }
 
     let result = match problem.as_str() {
-        // "dna" => solve(dna::dna, "dna"),
-        // "rna" => solve(rna::rna, "rna"),
-        // "revc" => solve(revc::revc, "revc"),
-        // "fib" => solve(fib::fib, "fib"),
-        // "gc" => solve(gc::gc, "gc"),
-        // "hamm" => solve(hamm::hamm, "hamm"),
-        // "iprb" => solve(iprb::iprb, "iprb"),
-        // "prot" => solve(prot::prot, "prot"),
-        // "subs" => solve(subs::subs, "subs"),
         "dna" => solve(rosalind_rust::problems::dna::dna, "dna"),
         "rna" => solve(rosalind_rust::problems::rna::rna, "rna"),
         "revc" => solve(rosalind_rust::problems::revc::revc, "revc"),
