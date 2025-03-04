@@ -104,3 +104,27 @@ pub fn translate_rna(rna: &str) -> String {
 
     protein
 }
+
+pub fn parse_fasta(s: &str) -> HashMap<String, String> {
+    let mut sequences = HashMap::new();
+    let mut name = String::new();
+    let mut dna = String::new();
+
+    for line in s.lines() {
+        if line.starts_with('>') {
+            if !name.is_empty() {
+                sequences.insert(name.clone(), dna.clone());
+                dna.clear();
+            }
+            name = line[1..].to_string();
+        } else {
+            dna.push_str(line);
+        }
+    }
+
+    if !name.is_empty() {
+        sequences.insert(name, dna);
+    }
+
+    sequences
+}
