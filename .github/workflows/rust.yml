@@ -44,9 +44,14 @@ jobs:
     - name: Build
       run: cargo build --verbose
 
+    - name: List problems
+      id: list_problems
+      run: echo "::set-output name=problems::$(cat ${{ github.workspace }}/target/debug/build/rosalind-*/out/problems_list.rs | grep -oP '(?<=\").*(?=\")' | tr '\n' ' ')"
+
     - name: Run problems
       run: |
-        for problem in "${PROBLEMS[@]}"; do
+        problems="${{ steps.list_problems.outputs.problems }}"
+        for problem in $problems; do
           echo "Running problem: $problem"
           cargo run -- $problem
         done
