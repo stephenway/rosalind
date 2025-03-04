@@ -29,6 +29,7 @@ fn main() {
         "subs" => solve(rosalind_rust::problems::subs::subs, "subs"),
         "iev" => solve(rosalind_rust::problems::iev::iev, "iev"),
         "cons" => solve(rosalind_rust::problems::cons::cons, "cons"),
+        "fibd" => solve(rosalind_rust::problems::fibd::fibd, "fibd"),
         _ => unreachable!(),
     };
 

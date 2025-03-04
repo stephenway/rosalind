@@ -1,6 +1,7 @@
 pub mod cons;
 pub mod dna;
 pub mod fib;
+pub mod fibd;
 pub mod gc;
 pub mod hamm;
 pub mod iev;
