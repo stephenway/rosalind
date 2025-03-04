@@ -1,4 +1,5 @@
 [package]
+build = "src/build.rs"
 edition = "2021"
 name = "rosalind-rust"
 version = "0.1.0"
