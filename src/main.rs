@@ -10,14 +10,14 @@ fn main() {
         std::process::exit(1);
     }
 
-    let problem = &args[1];
+    let problem_name = &args[1];
 
-    if !PROBLEMS.contains(&problem.as_str()) {
-        eprintln!("Unknown problem: {}", problem);
+    if !PROBLEMS.contains(&problem_name.as_str()) {
+        eprintln!("Unknown problem: {}", problem_name);
         std::process::exit(1);
     }
 
-    let result = match problem.as_str() {
+    let result = match problem_name.as_str() {
         "dna" => solve(rosalind_rust::problems::dna::dna, "dna"),
         "rna" => solve(rosalind_rust::problems::rna::rna, "rna"),
         "revc" => solve(rosalind_rust::problems::revc::revc, "revc"),
@@ -30,7 +30,8 @@ fn main() {
         "iev" => solve(rosalind_rust::problems::iev::iev, "iev"),
         "cons" => solve(rosalind_rust::problems::cons::cons, "cons"),
         "fibd" => solve(rosalind_rust::problems::fibd::fibd, "fibd"),
-        _ => unreachable!(),
+        "lcsm" => solve(rosalind_rust::problems::lcsm::lcsm, "lcsm"),
+        _=> panic!("Unknown problem: {}", problem_name),
     };
 
     match result {

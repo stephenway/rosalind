@@ -26,17 +26,23 @@ pub fn hamming<T: PartialEq>(sequence1: &[T], sequence2: &[T]) -> Result<usize, 
 
 #[macro_export]
 macro_rules! define_problem {
-    ($name:ident, $arg:ident, $type:ty, $sample_input:expr, $sample_output:expr, $body:block) => {
-        pub fn $name($arg: Option<$type>) -> String {
-            let $arg = $arg.unwrap_or($sample_input);
-            $body
+    ($name:ident, $input:ident, $input_type:ty, $sample_input:expr, $sample_output:expr, $body:block) => {
+        pub fn $name($input: Option<$input_type>) -> String {
+            let $input = $input.unwrap_or_else(|| $sample_input.to_string());
+            let result: String = $body;
+            if $input == $sample_input.to_string() {
+                assert_eq!(result, $sample_output.to_string());
+            }
+            result
         }
 
         #[cfg(test)]
         mod $name {
+            use super::*;
+
             #[test]
-            fn test() {
-                assert_eq!(super::$name(Some($sample_input)), $sample_output);
+            fn test_sample() {
+                assert_eq!($name(Some($sample_input.to_string())), $sample_output.to_string());
             }
         }
     };
